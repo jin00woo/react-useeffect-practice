@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useContext} from 'react';
+import AuthContext from "../../store/auth-context";
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -54,8 +55,10 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(emailState.value, enteredPassword);
+    authCtx.onLogin(emailState.value, enteredPassword);
   };
+
+  const authCtx = useContext(AuthContext);
 
   return (
     <Card className={classes.login}>
